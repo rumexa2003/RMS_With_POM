@@ -58,10 +58,6 @@ def test_approve_request(page,role):
         # staff.select_review_request()
         # staff.wait_for_timeout(5000)
         # staff.wait_for_timeout(5000)
-
-
-        
-        # staff.approve_request()
         staff.wait_for_timeout(5000)
 
 
