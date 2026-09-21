@@ -15,6 +15,7 @@ class CashierPage:
         )
         self.report=page.get_by_role("button", name="Reports")
         self.close=page.get_by_role("button", name="Close Day")
+        
 
 
     def select_staff(self):

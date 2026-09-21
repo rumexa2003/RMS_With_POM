@@ -47,6 +47,8 @@ class BarPage:
             
     def start_shift(self):
         self.start_shift_button.click()
+    def start_shift1(self):
+        self.start_shift_button.click()
 
     def click_report_button(self):
         self.reports_icon.click()

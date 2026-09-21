@@ -22,6 +22,8 @@ def test_status(page,role):
         bar.enter_pin("0000")
         bar.start_shift()
         bar.start_shift()
+        bar.start_shift()
+
         # bar.select_drink()
         food=food_status(page)
         food.select_drink()

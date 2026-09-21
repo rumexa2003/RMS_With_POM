@@ -23,19 +23,30 @@ class ManagerPage:
     
             
         self.add_drink= page.get_by_placeholder("Item Name")
-    # drink_name_input.fill("test drink")
-    
-            
-        self.price = page.locator("input[type='number'][placeholder='0']")
-    # price_input.fill("350")
-    # page.wait_for_timeout(2000)
-            
-   
-            
+        self.price = page.locator("input[type='number'][placeholder='0']")    
         self.save=page.get_by_role("button", name="Save Dish")
         self.reports_link = page.get_by_role("link", name="Reports", exact=True)
 
+        # specials:
 
+        self.link = page.get_by_role("link", name="Specials", exact=True)
+    # link.click()
+    # page.wait_for_timeout(1000)  
+
+        self.dish = page.locator("div.grid.grid-cols-12").filter(
+        has_text="American Chopsey"
+        )
+
+    # print("Dish count:", dish.count())
+
+        self.toggle = self.dish.locator("button")
+
+    # print("Toggle count:", toggle.count())
+
+    # toggle.click()
+
+    # page.wait_for_timeout(7000)  
+    # browser.close()
     def select_staff(self):
         self.staff_button.click()
 
@@ -66,6 +77,14 @@ class ManagerPage:
         self.save.click()
     def open_reports(self):
         self.reports_link.click()
+    # specials:
+    def click_specials(self):
+        self.link.click()
+    def click_toggle(self):
+        self.toggle.click()
+    def wait_for_timeout(self, milliseconds):
+        self.page.wait_for_timeout(milliseconds)
+    
 
 
     

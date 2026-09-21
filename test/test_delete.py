@@ -5,12 +5,12 @@ from pages.login_page import LoginPage
 from pages.manager import ManagerPage
 from pages.admin import adminPage
 from pages.resleave import StaffPage
-
+from pages.delete import Delete_staff
 @pytest.mark.parametrize(
     "role",
     ["admin", "manager"]
 )
-def test_approve_request(page,role):
+def test_delete(page,role):
     login=LoginPage(page)
     login.open()
     login.enter_restaurant_code("GC-01")
@@ -27,15 +27,21 @@ def test_approve_request(page,role):
 
         staff.wait_for_timeout(5000)
         staff.open_staff_hub()
-        if staff.select_review_request():
 
-             staff.wait_for_timeout(2000)
-             staff.approve_request()
+        e=Delete_staff(page)
+        e.select_staff()
+        e.wait_for_timeout(2000)
+        
 
-        else:
+        def handle_dialog(dialog):
+            print("Dialog message:", dialog.message)
+            dialog.accept()
 
-            print("Nothing to approve.")
-      
+        page.once("dialog", handle_dialog)
+        e.delete_staff()
+        e.wait_for_timeout(5000)
+
+
     elif role=="admin":
         admin=adminPage(page)
         admin.open()
@@ -45,24 +51,16 @@ def test_approve_request(page,role):
         admin.auth()
         staff=StaffPage(page)
         staff.admin_staff()
-        staff.wait_for_timeout(5000)
-        if staff.select_review_request():
-        
-            staff.wait_for_timeout(2000)
-            staff.approve_request()
-        
-        else:
-        
-            print("Nothing to approve.")
-        
-        # staff.select_review_request()
-        # staff.wait_for_timeout(5000)
-        # staff.wait_for_timeout(5000)
-
-
-        
-        # staff.approve_request()
-        staff.wait_for_timeout(5000)
-
-
-
+        e=Delete_staff(page)
+    
+        e.select_staff()
+        e.wait_for_timeout(2000)
+            
+        def handle_dialog(dialog):
+            print("Dialog message:", dialog.message)
+            dialog.accept()
+    
+        page.once("dialog", handle_dialog)
+        e.delete_staff()
+        e.wait_for_timeout(5000)
+    

@@ -5,7 +5,7 @@ from pages.login_page import LoginPage
 from pages.manager import ManagerPage
 from pages.admin import adminPage
 from pages.resleave import StaffPage
-
+from pages.edit_staff import Edit
 @pytest.mark.parametrize(
     "role",
     ["admin", "manager"]
@@ -27,14 +27,21 @@ def test_approve_request(page,role):
 
         staff.wait_for_timeout(5000)
         staff.open_staff_hub()
-        if staff.select_review_request():
 
-             staff.wait_for_timeout(2000)
-             staff.approve_request()
+        e=Edit(page)
+        e.select_staff()
+        e.click_profile()
+        e.wait_for_timeout(1000)
+        
+        e.click_edit()
+        e.wait_for_timeout(2000)
 
-        else:
+        e.fill_phone("9876543210")
+        e.wait_for_timeout(2000)
+        e.update_button()
+        e.wait_for_timeout(2000)
 
-            print("Nothing to approve.")
+        
       
     elif role=="admin":
         admin=adminPage(page)
@@ -45,24 +52,16 @@ def test_approve_request(page,role):
         admin.auth()
         staff=StaffPage(page)
         staff.admin_staff()
-        staff.wait_for_timeout(5000)
-        if staff.select_review_request():
+        e=Edit(page)
+        e.select_staff()
+        e.click_profile()
+        e.wait_for_timeout(1000)
         
-            staff.wait_for_timeout(2000)
-            staff.approve_request()
-        
-        else:
-        
-            print("Nothing to approve.")
-        
-        # staff.select_review_request()
-        # staff.wait_for_timeout(5000)
-        # staff.wait_for_timeout(5000)
+        e.click_edit()
+        e.wait_for_timeout(2000)
 
-
-        
-        # staff.approve_request()
-        staff.wait_for_timeout(5000)
-
-
-
+        e.fill_phone("9876543210")
+        e.wait_for_timeout(2000)
+        e.update_button()
+        e.wait_for_timeout(2000)
+    

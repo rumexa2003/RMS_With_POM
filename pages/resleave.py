@@ -15,7 +15,7 @@ class StaffPage:
         self.approve_button = page.get_by_role(
             "button",
             name="Approve"
-        )
+        ).nth(0)
         self.staff_admin=page.get_by_text("Staff",exact=True)
 
     def open_staff_hub(self):
@@ -32,34 +32,45 @@ class StaffPage:
 
     # def approve_request(self):
     #     self.approve_button.click()
-    
-    
+   
 
 
 
     def has_review_request(self):
         return self.review_request.count() > 0
 
-    def select_review_request(self):
-        if not self.has_review_request():
-            print("No leave review request found.")
-            return False
+    # def select_review_request(self):
+    #     if not self.has_review_request():
+    #         print("No leave review request found.")
+    #         return False
 
-        print(
-            f"Review requests found: "
-            f"{self.review_request.count()}"
-        )
+    #     print(
+    #         f"Review requests found: "
+    #         f"{self.review_request.count()}"
+    #     )
 
-        review_request = self.review_request.first
+    #     review_request = self.review_request.first
 
     
+    #     staff_card = review_request.locator("xpath=..")
+
+    #     staff_card.click()
+
+    #     return True
+
+    def select_review_request(self):
+    
+        if self.review_request.count() == 0:
+            print("No leave review request found.")
+            return False
+    
+        review_request = self.review_request.first
+    
         staff_card = review_request.locator("xpath=..")
-
         staff_card.click()
-
+    
         return True
-
-
+        
 
     def approve_request(self):
         self.approve_button.click()
