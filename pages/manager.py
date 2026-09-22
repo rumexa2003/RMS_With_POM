@@ -26,8 +26,8 @@ class ManagerPage:
         self.price = page.locator("input[type='number'][placeholder='0']")    
         self.save=page.get_by_role("button", name="Save Dish")
         self.reports_link = page.get_by_role("link", name="Reports", exact=True)
-
-        # specials:
+        self.inventory=page.get_by_role("link",name="Inventory", exact=True)
+        # specials:Inventory
 
         self.link = page.get_by_role("link", name="Specials", exact=True)
     # link.click()
@@ -37,16 +37,9 @@ class ManagerPage:
         has_text="American Chopsey"
         )
 
-    # print("Dish count:", dish.count())
-
         self.toggle = self.dish.locator("button")
+        self.cashflow=page.get_by_role("button",name="Log Cashflow")
 
-    # print("Toggle count:", toggle.count())
-
-    # toggle.click()
-
-    # page.wait_for_timeout(7000)  
-    # browser.close()
     def select_staff(self):
         self.staff_button.click()
 
@@ -84,7 +77,10 @@ class ManagerPage:
         self.toggle.click()
     def wait_for_timeout(self, milliseconds):
         self.page.wait_for_timeout(milliseconds)
-    
+    def open_stock(self):
+        self.inventory.click()
+    def open_log(self):
+        self.cashflow.click()
 
 
     

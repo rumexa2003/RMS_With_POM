@@ -34,6 +34,9 @@ class BarPage:
         self.drink_name=page.get_by_placeholder("e.g. Classic Mojito")
         self.drink_price=page.locator("input[type='number'][placeholder='0']")  
         self.save=page.get_by_role("button", name="Save Drink")
+        self.inventory_icon = page.locator("svg.lucide-package")
+    
+
 
     def select_staff(self):
         self.staff_button.click()
@@ -81,6 +84,8 @@ class BarPage:
         self.save.click()
     def wait_for_timeout(self, milliseconds):
         self.page.wait_for_timeout(milliseconds)
+    def click_inventory(self):
+        self.inventory_icon.click()
 
     # def select_drink(self):
     #     self.drink.click()

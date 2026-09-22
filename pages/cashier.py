@@ -15,6 +15,7 @@ class CashierPage:
         )
         self.report=page.get_by_role("button", name="Reports")
         self.close=page.get_by_role("button", name="Close Day")
+        self.stock=page.get_by_role("button",name="Vault & Ledger")
         
 
 
@@ -35,4 +36,5 @@ class CashierPage:
     def close_day(self):
         self.close.click()
     
-    
+    def open_stock(self):
+        self.stock.click()

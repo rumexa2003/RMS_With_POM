@@ -21,6 +21,10 @@ def test_bar():
             bar.enter_pin("0000")
             bar.start_shift()
             bar.start_shift()
+            bar.wait_for_timeout(2000)
+            bar.click_inventory()
+            bar.wait_for_timeout(2000)
+
             browser.close()
 
 
