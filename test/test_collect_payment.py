@@ -21,8 +21,27 @@ def test_payment(page,role):
     if role=="cash":
         cash=Payment(page)
         cash.click_avaliable_pay()
+        cash.wait_for_timeout(2000)
+
+        cash.print_bill()
+        cash.wait_for_timeout(5000)
+        # page.keyboard.press("Escape")
+        # cash.wait_for_timeout(5000)
+        # print("Back to RMS")
+        # print("URL:", page.url)
+        cash.click_print_in_preview()
+        cash.wait_for_timeout(10000)
+        # cash.save_printed_bill() 
+        cash.cancel_save_dialog()
+
+
+        # print("Number of pages:", len(page.context.pages))
+
+        # for i, p in enumerate(page.context.pages):
+        #     print(f"Page {i}: {p.url}")
         cash.click_comfirm_pay()
         cash.wait_for_timeout(2000)
+
     elif role=="Credit":
         C=Payment(page)
         C.click_avaliable_pay()
